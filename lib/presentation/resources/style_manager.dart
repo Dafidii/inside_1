@@ -18,7 +18,8 @@ TextStyle _getMaterialTextStyle(
 TextStyle get displayLarge =>
     _getMaterialTextStyle(FontSize.s57, 1.1, -0.25, FontWeightManager.medium);
 TextStyle get displayMedium =>
-    _getMaterialTextStyle(FontSize.s45, 1.1, 0, FontWeightManager.medium);
+    _getMaterialTextStyle(FontSize.s36, 1.1, 0, FontWeightManager.semiBold,
+        fontFamily: FontConstant.fontFamily, color: ColorManager.secondary);
 TextStyle get displaySmall =>
     _getMaterialTextStyle(FontSize.s32, 1.1, 0, FontWeightManager.medium,
         fontFamily: FontConstant.fontFamily, color: ColorManager.gray11);

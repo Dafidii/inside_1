@@ -2,7 +2,9 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:inside_1/app/di.dart';
+import 'package:inside_1/domain/model/model.dart';
 import 'package:inside_1/domain/provider/auth_provider.dart';
+import 'package:inside_1/presentation/exhibition_screen/exhibition_screen.dart';
 import 'package:inside_1/presentation/explore/explore.dart';
 import 'package:inside_1/presentation/home/home.dart';
 import 'package:inside_1/presentation/login/login.dart';
@@ -19,6 +21,8 @@ class AppPageRoutePath {
   static const String signup = 'signUp';
   static const String explore = '/explore';
   static const String profile = '/profile';
+
+  static const String exhibitionScreen = 'exhibitionScreen';
 }
 
 class AppPageRouteName {
@@ -30,6 +34,8 @@ class AppPageRouteName {
 
   static const String explore = 'Explore';
   static const String profile = 'Profile';
+
+  static const String exhibitionScreen = 'ExhibitionScreen';
 }
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
@@ -50,25 +56,37 @@ final GoRouter router = GoRouter(
       ),
       routes: [
         GoRoute(
-          name: AppPageRouteName.home,
-          path: AppPageRoutePath.home,
-          pageBuilder: (BuildContext context, GoRouterState state) =>
-              CustomTransitionPage(
-            key: state.pageKey,
-            child: const Home(),
-            transitionsBuilder: (
-              BuildContext context,
-              Animation<double> animation,
-              Animation<double> secondaryAnimation,
-              Widget child,
-            ) =>
-                FadeThroughTransition(
-              animation: animation,
-              secondaryAnimation: secondaryAnimation,
-              child: child,
-            ),
-          ),
-        ),
+            name: AppPageRouteName.home,
+            path: AppPageRoutePath.home,
+            pageBuilder: (BuildContext context, GoRouterState state) =>
+                CustomTransitionPage(
+                  key: state.pageKey,
+                  child: const Home(),
+                  transitionsBuilder: (
+                    BuildContext context,
+                    Animation<double> animation,
+                    Animation<double> secondaryAnimation,
+                    Widget child,
+                  ) =>
+                      FadeThroughTransition(
+                    animation: animation,
+                    secondaryAnimation: secondaryAnimation,
+                    child: child,
+                  ),
+                ),
+            routes: [
+              GoRoute(
+                name: AppPageRouteName.exhibitionScreen,
+                path: AppPageRoutePath.exhibitionScreen,
+                pageBuilder: (BuildContext context, GoRouterState state) {
+                  Exhibition exhibition = state.extra as Exhibition;
+                  return MaterialPage(
+                    key: state.pageKey,
+                    child: ExhibitionScreen(exhibition: exhibition),
+                  );
+                },
+              ),
+            ]),
         GoRoute(
           name: AppPageRouteName.explore,
           path: AppPageRoutePath.explore,

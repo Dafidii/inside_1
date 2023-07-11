@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:inside_1/app/di.dart';
 import 'package:inside_1/data/network/failure.dart';
+import 'package:inside_1/domain/model/model.dart';
+import 'package:inside_1/domain/provider/auth_provider.dart';
 import 'package:inside_1/domain/provider/connectivity.dart';
+import 'package:inside_1/domain/use_case/get_user_info_use_case.dart';
 import 'package:inside_1/domain/use_case/sign_out_use_case.dart';
 import 'package:inside_1/presentation/base/base_view_model.dart';
 import 'package:inside_1/presentation/common/state_renderer/state_renderer.dart';
@@ -9,8 +12,9 @@ import 'package:inside_1/presentation/common/state_renderer/state_renderer_impl.
 
 class ProfileViewModel extends BaseViewModel with ProfileViewModelInputs, ProfileViewModelOutputs {
   final SignOutUseCase _signOutUseCase;
+  final GetUserInfoUseCase _getUserInfoUseCase;
 
-  ProfileViewModel(this._signOutUseCase);
+  ProfileViewModel(this._signOutUseCase, this._getUserInfoUseCase);
 
   @override
   signOut() async {
@@ -30,6 +34,9 @@ class ProfileViewModel extends BaseViewModel with ProfileViewModelInputs, Profil
           stateRendererType: StateRendererType.fullScreenContentState));
     }
   }
+
+  @override
+  Stream<UsersInfo> get userInfoStream => _getUserInfoUseCase.execute(GetUserInfoUseCaseInputs(instance<AuthState>().userUid));
 }
 
 mixin ProfileViewModelInputs {
@@ -37,5 +44,5 @@ mixin ProfileViewModelInputs {
 }
 
 mixin ProfileViewModelOutputs {
-
+  Stream<UsersInfo> get userInfoStream;
 }

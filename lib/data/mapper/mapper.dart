@@ -50,3 +50,11 @@ on Stream<DocumentSnapshot<Map<String, dynamic>>> {
   }
 }
 
+extension StreamQuerySnapshotMapper
+on Stream<QuerySnapshot<Map<String, dynamic>>> {
+  Stream<List<Exhibition>> exhibitionsToDomain() async* {
+    yield* map((snapshot) =>
+        snapshot.docs.map((doc) => Exhibition.fromJson(doc.data())).toList());
+  }
+}
+
