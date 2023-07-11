@@ -6,6 +6,8 @@ class AppStrings{
   static const String signIntoYourAccount = 'Sign into your account';
   static const String loginText = 'Login to your Inside account and continue exploring history ';
   static const String emailText = 'Email address';
+  static const String usernameText = 'Username';
+  static const String usernameSubText = 'Enter your username';
   static const String emailSubText = 'Enter your email address';
   static const String passwordText = 'Password';
   static const String passwordSubText = 'Enter your Password';
@@ -16,4 +18,7 @@ class AppStrings{
   static const String createText= 'Create an account and commence your very first steps to staying informed';
   static const String createAccount = 'Create Account';
   static const String already = 'Already have an account? ';
+  static const String loading = 'Loading';
+  static const String signUp = 'Sign up';
+  static const String signOut = 'Sign out';
 }

@@ -13,10 +13,13 @@ class Welcome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Image.asset(
-            ImagesAsset.welcome,
-            fit: BoxFit.cover,
+          Flexible(
+            child: Image.asset(
+              ImagesAsset.welcome,
+              fit: BoxFit.fitWidth,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16),
@@ -53,7 +56,7 @@ class Welcome extends StatelessWidget {
                   child: const Text(AppStrings.alreadyHaveAnAccount),
                 ),
                 const SizedBox(
-                  height: AppSize.s16,
+                  height: AppSize.s40,
                 ),
               ],
             ),

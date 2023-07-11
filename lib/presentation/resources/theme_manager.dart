@@ -59,6 +59,18 @@ getApplicationTheme () {
         ),
       ),
     ),
+    navigationBarTheme: NavigationBarThemeData(
+      backgroundColor: ColorManager.secondary,
+      indicatorColor: Colors.transparent,
+      labelTextStyle: MaterialStateProperty.resolveWith((states) {
+        if (states.contains(MaterialState.selected)) {
+          return labelLarge.copyWith(height: 1, color: ColorManager.backgroundColor);
+        } else {
+          return labelMedium.copyWith(height: 1, color: ColorManager.white);
+        }
+      }),
+      // backgroundColor: ColorManager.navBarBackgroundColor,
+    ),
     inputDecorationTheme: InputDecorationTheme(
       labelStyle: TextStyle(color: ColorManager.gray6),
       contentPadding: const EdgeInsets.symmetric(

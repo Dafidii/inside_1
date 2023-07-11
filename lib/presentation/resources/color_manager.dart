@@ -15,4 +15,10 @@ class ColorManager {
   static Color gray8 = const Color(0xFF434343);
   static Color gray11 = const Color(0xFF141414);
   static Color gray12 = const Color(0xFF262626);
+
+
+  static Color red = const Color(0xffDE3434);
+  static Color green = const Color(0xff065B36);
+  static Color yellow = const Color(0xffECBD32);
+
 }
