@@ -8,14 +8,14 @@ import 'package:inside_1/presentation/resources/assets_manager.dart';
 import 'package:inside_1/presentation/resources/color_manager.dart';
 
 class ConnectivityState extends ChangeNotifier {
-  Future<bool> get isConnected => InternetConnection().hasInternetAccess;
+  Future<bool> get isConnected => InternetConnectionCheckerPlus().hasConnection;
 
   late StreamSubscription subscription;
   ConnectivityState() {
     subscription =
-        InternetConnection().onStatusChange.listen((status) async {
+        InternetConnectionCheckerPlus().onStatusChange.listen((status) async {
       bool isDeviceConnected =
-          await InternetConnection().hasInternetAccess;
+          await InternetConnectionCheckerPlus().hasConnection;
       if (!isDeviceConnected) {
         scaffoldKey.currentState!.showMaterialBanner(
           MaterialBanner(

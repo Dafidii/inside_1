@@ -30,7 +30,7 @@ final instance = GetIt.instance;
 
 Future<void> initAppModule() async {
   instance.registerLazySingleton<NetworkInfo>(
-          () => NetworkInfoImpl(InternetConnection()));
+          () => NetworkInfoImpl(InternetConnectionCheckerPlus()));
 
   instance.registerLazySingleton<FirebaseAuthServiceClient>(
           () => FirebaseAuthServiceClient());
